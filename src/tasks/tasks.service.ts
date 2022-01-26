@@ -43,17 +43,8 @@ export class TasksService {
 
     updateTask(id : string, updatedTaskDto : UpdateTaskDto){
         const {status} = updatedTaskDto;
-        let task : Task = null;
-        this.tasks = this.tasks.map(t=>{
-            if (t.id === id){
-                t.status = status;
-                task = t;
-                return t;
-            }
-            else{
-                return t;
-            }
-        });
+        let task : Task = this.getTask(id);
+        task.status = status;
         return task;
     }
 }
