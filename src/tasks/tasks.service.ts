@@ -11,6 +11,19 @@ export class TasksService {
         return this.tasks.find(t=>t.id === id);
     }
 
+    deleteTask(id : string){
+        let task : Task = null;
+        this.tasks = this.tasks.filter(t=>{
+            if (t.id !== id){
+                return true;
+            }else{
+                task = t;
+                return false
+            }
+        });
+        return task;
+    }
+
     getAllTasks(){
         return this.tasks;
     }
