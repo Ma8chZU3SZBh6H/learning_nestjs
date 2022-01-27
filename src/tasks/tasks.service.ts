@@ -34,7 +34,9 @@ export class TasksService {
                 return false
             }
         });
-        return task;
+        if(task)
+            return task;
+        throw new NotFoundException();
     }
 
     getAllTasks(){
