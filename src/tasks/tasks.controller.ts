@@ -9,10 +9,8 @@ export class TasksController {
     constructor(private taskService: TasksService) {}
 
     @Get()
-    getTasksFilter(@Body() getTasksFilterDto : GetTasksFilterDto){
-        if (Object.keys(getTasksFilterDto).length)
-            return this.taskService.getTasksFilter(getTasksFilterDto);
-        return this.taskService.getAllTasks();
+    getTasks(@Body() getTasksFilterDto : GetTasksFilterDto){
+        return this.taskService.getTasks(getTasksFilterDto);
     }
 
     @Get(':id')
