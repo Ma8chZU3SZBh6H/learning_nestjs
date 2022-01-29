@@ -6,13 +6,15 @@ import {GetTasksFilterDto} from "./dto/get-tasks-filter.dto";
 import {AuthGuard} from "@nestjs/passport";
 import {GetUser} from "../auth/get-user.decorator";
 import {User} from "../auth/user.entity";
+import {ConfigService} from "@nestjs/config";
 
 @Controller('tasks')
 @UseGuards(AuthGuard())
 export class TasksController {
     private logger = new Logger('TasksController');
 
-    constructor(private taskService: TasksService) {
+    constructor(private taskService: TasksService, private configService: ConfigService) {
+        console.log(configService.get('TEST'));
     }
 
     @Get()
