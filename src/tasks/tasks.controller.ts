@@ -19,18 +19,18 @@ export class TasksController {
     }
 
     @Get(':id')
-    getTask(@Param('id') id: string) {
-        return this.taskService.getTask(id);
+    getTask(@Param('id') id: string, @GetUser() user: User) {
+        return this.taskService.getTask(id, user);
     }
 
     @Delete(':id')
-    deleteTask(@Param('id') id: string) {
-        return this.taskService.deleteTask(id);
+    deleteTask(@Param('id') id: string, @GetUser() user: User) {
+        return this.taskService.deleteTask(id, user);
     }
 
     @Patch(':id/status')
-    updateTask(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-        return this.taskService.updateTask(id, updateTaskDto);
+    updateTask(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto, @GetUser() user: User) {
+        return this.taskService.updateTask(id, updateTaskDto, user);
     }
 
     @Post()
