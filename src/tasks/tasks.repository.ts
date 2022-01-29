@@ -17,9 +17,11 @@ export class TasksRepository extends Repository<Task> {
         return task;
     }
 
-    async getTasks(filterDto: GetTasksFilterDto) {
+    async getTasks(filterDto: GetTasksFilterDto, user: User) {
         const {status, search} = filterDto;
-        const query = this.createQueryBuilder('task');
+        const query = await this.createQueryBuilder('task'); //.leftJoinAndSelect('task.user', 'user')
+        query.where({user});
+
         if (status) {
             query.andWhere('task.status = :status', {status})
         }
@@ -29,6 +31,7 @@ export class TasksRepository extends Repository<Task> {
                 {search: `%${search}%`}
             );
         }
+        
         return await query.getMany();
     }
 }

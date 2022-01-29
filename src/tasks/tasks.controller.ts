@@ -14,8 +14,8 @@ export class TasksController {
     }
 
     @Get()
-    getTasks(@Body() getTasksFilterDto: GetTasksFilterDto) {
-        return this.taskService.getTasks(getTasksFilterDto);
+    getTasks(@Body() getTasksFilterDto: GetTasksFilterDto, @GetUser() user: User) {
+        return this.taskService.getTasks(getTasksFilterDto, user);
     }
 
     @Get(':id')
